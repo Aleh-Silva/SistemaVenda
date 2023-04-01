@@ -3,6 +3,7 @@ using SistemaVenda.DAL;
 using SistemaVenda.Entidades;
 using SistemaVenda.Models;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 
 namespace SistemaVenda.Controllers
 {
@@ -22,13 +23,8 @@ namespace SistemaVenda.Controllers
 
         public IActionResult Index()
         {
-            Categoria categoria = new Categoria()
-            {
-                Descricao = "Limpeza"
-            };
-            Repositorio.Categoria.Add(categoria);
-            Repositorio.SaveChanges();
-            return View();
+            IEnumerable<Categoria> lista = Repositorio.Categoria.ToList();
+            return View(lista);
         }
 
         public IActionResult Privacy()
