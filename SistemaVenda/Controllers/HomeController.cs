@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SistemaVenda.DAL;
 using SistemaVenda.Entidades;
 using SistemaVenda.Models;
@@ -23,8 +24,11 @@ namespace SistemaVenda.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Categoria> lista = Repositorio.Categoria.ToList();
-            return View(lista);
+            Categoria objCategoria = Repositorio.Categoria.Where(x => x.Codigo == 1).FirstOrDefault();
+            Repositorio.Attach(objCategoria);
+            Repositorio.Remove(objCategoria);
+            Repositorio.SaveChanges();
+            return View();
         }
 
         public IActionResult Privacy()
