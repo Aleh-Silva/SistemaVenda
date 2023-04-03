@@ -1,19 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SistemaVenda.DAL;
 using SistemaVenda.Entidades;
 using SistemaVenda.Models;
 using System.Diagnostics;
+using System.Net.NetworkInformation;
 
 namespace SistemaVenda.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
         protected ApplicationDbContext Repositorio;
         public HomeController(ApplicationDbContext repositorio)
         {
@@ -22,12 +18,6 @@ namespace SistemaVenda.Controllers
 
         public IActionResult Index()
         {
-            Categoria categoria = new Categoria()
-            {
-                Descricao = "Limpeza"
-            };
-            Repositorio.Categoria.Add(categoria);
-            Repositorio.SaveChanges();
             return View();
         }
 
