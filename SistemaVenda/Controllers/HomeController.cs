@@ -10,12 +10,6 @@ namespace SistemaVenda.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
         protected ApplicationDbContext Repositorio;
         public HomeController(ApplicationDbContext repositorio)
         {
@@ -24,10 +18,6 @@ namespace SistemaVenda.Controllers
 
         public IActionResult Index()
         {
-            Categoria objCategoria = Repositorio.Categoria.Where(x => x.Codigo == 1).FirstOrDefault();
-            Repositorio.Attach(objCategoria);
-            Repositorio.Remove(objCategoria);
-            Repositorio.SaveChanges();
             return View();
         }
 
